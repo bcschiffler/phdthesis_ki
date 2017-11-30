@@ -1,0 +1,92 @@
+---
+output: pdf_document
+---
+
+# Methodological Considerations
+
+In this chapter I will provide an outline of the main techniques used in our studies with a focus on neuroimaging techniques and computational modelling.
+
+## Magnetic Resonance Imaging
+
+Magnetic Resonance Imaging (MRI) is a non-invasive imaging technique that utilizes the fact that different tissue types have different magnetic properties to provide high-resolution images of anatomy such as the brain.
+To make this possible, a strong magnetic field, commonly in the range of 1.5 - 7 Tesla for human brain imaging, is created by an MRI scanner, which aligns the nuclei of (e.g., hydrogen) atoms in a common direction.
+The transient introduction of a varying electromagnetic field (B~1~) by a radiofrequency pulse leads to excitation and a dephasing of the nuclei.
+Now it becomes for example possible to measure how long it takes the nuclei to return back to their original state (the so-called *spin-lattice relaxation time* or *T~1~* relaxation). 
+This property is used in neuroimaging to provide the so-called *T~1~* contrast, which enables a detailed visualization of differences between e.g., grey and white matter in the brain.
+We make use of the *T~1~* contrast in **Study II** to assess inter-subject differences in cortical thickness depending on individual propensity to adapt response speed after an error.
+
+\begin{figure}
+\centering
+\includegraphics{./figures/cortical_thickness_freesurfer.pdf}
+\caption{Cortical thickness is calculated using the shortest distance between pial surface and white surface. Image was created with the tool TkMedit after running the FreeSurfer standard processing pipeline on one example brain from Study II.\label{fig_corticalthickness}}
+\end{figure}
+
+Cortical thickness is a MRI-derived metric which has been successfully used as a measure of the integrity of the cerebral cortex [e.g., @Dickerson2012; @Makris2007].
+It decreases with normal aging [@Storsve2014] and can be related to symptom severity with corresponding regionally specific rates of decrease in Alzheimer's disease [@Dickerson2009].
+Using freely available tools such as FreeSurfer [@Fischl2000], cortical thickness can be calculated by taking the smallest distance between the pial surface (boundary between grey matter and cerebrospinal fluid) and the white surface (boundary between grey matter and white matter), as detailed in Figure \ref{fig_corticalthickness}.
+
+## Functional Magnetic Resonance Imaging
+
+Ideally, in cognitive neuroscience we would like to observe neuronal activity directly and relate it to ongoing cognitive processes as for example probed in closely controlled experimental studies.
+However, this is not yet possible in a non-invasive fashion today.
+Instead, we use a proxy to neuronal activity, the so-called Blood Oxygen Level Dependent (BOLD) contrast [@Ogawa1990].
+This contrast relies on the fact that the deoxyhemoglobin concentration in the blood changes when more oxygen is being consumed, for example because the participant is currently doing a decision-making task and active brain areas need to be supplied with more oxygen.
+This physiological change in deoxyhemoglobin concentration changes the magnetic properties of water molecules which is then measurable by MRI.
+The concept of BOLD-based functional MRI (fMRI) relies on this indirect measure to assess neural activity in the form of local field potentials [@Logothetis2001].
+We make use of fMRI and the BOLD contrast in particular in **Study I** using Statistical Parametric Mapping (SPM, Wellcome Trust Centre for Neuroimaging, UCL, London, United Kingdom) as the analysis tool.
+
+## Reinforcement Learning Modelling 
+
+We used a standard RL model in **Study I** to investigate participant's choices and their learning progress.
+Because we assumed that participants learn differently from positive and negative feedback, we estimated two learning rates, $\alpha_{pos}$ and $\alpha_{neg}$, respectively.
+We initialized all weights at 0, the two learning rates at 0.5 (with $0 \leq \alpha \leq 1$ and a beta distributed prior) and the inverse temperature parameter $\beta$ at 1 (with $\beta \geq 0$ and a normal distributed prior with mean = 0 and standard deviation = $\sqrt{10}$).
+
+On a trial-by-trial basis, stimulus values were estimated via the following formula:
+
+$$Q_{t+1} = Q_t + \alpha_{(pos/neg)} * \delta_t$$
+with the prediction errors $\delta_t$ calculated as:
+
+$$\delta_t = r_t - Q_t$$
+Action probabilities (here for symbol A in pair AB) were estimated using the softmax equation:
+
+$$P(A)_t = \frac{1}{1 + e^{-\beta(Q(A)_t - Q(B)_t)}}$$
+
+Further, we calculated a trial-by-trial confidence measure by putting the action tendency estimated in the softmax equation in relation to 0.5:
+
+$$Conf(AB)_t = | 0.5 - P(A)_t |$$
+
+## Hierarchical Bayesian Estimation of the Drift Diffusion Model (HDDM)
+
+To model latent decision processes of PES in **Studies I** and **II** we used a toolbox which allows the estimation of the drift diffusion model in a hierarchical Bayesian fashion [HDDM, @Wiecki2013].
+In contrast to traditional ways of estimating diffusion models, the hierarchical Bayesian analysis assumes that parameters for individuals can be drawn from the group distribution and that an uncertainty around the parameters can also be estimated.
+A major benefit of this type of analysis is that far fewer trials per condition are needed for each individual participant to get reasonable parameter estimates as the individual parameter estimates are constrained by the group estimates [@Ratcliff2015; @Wiecki2013]. 
+In our studies, we mainly focused on the three main parameters of the DDM: The decision threshold *a*, the rate of evidence accumulation *v*, and the non-decision time *T~er~*.
+The reaction time slowing after an error can be described by either an increase in decision threshold, a decrease in evidence accumulation or an increase in the non-decision time, see Figure \ref{fig_ddm_pes_changes}.
+Teasing these contributions apart was particularly our goal in **Study III**.
+
+\begin{figure}
+\centering
+\includegraphics[height=0.80000\textwidth]{./figures/ddm_PES_changes.pdf}
+\caption{Purported decision process changes underlying post-error
+slowing. All three changes portrayed lead to a decrease in RT. However,
+changes in the respective parameters of the drift diffusion model map
+uniquely to changes in accuracy. While decision threshold increases
+predict corresponding increases in accuracy, decreases in evidence
+accumulation will lead to lower accuracy, and changes in non-decision
+time do not affect accuracy.\label{fig_ddm_pes_changes}}
+\end{figure}
+
+## Post-error slowing
+
+Traditionally, post-error slowing has been calculated by comparing average RT on post-error trials with average RT on post-correct trials.
+However, this method neglects the fact that errors might also cluster in certain parts of the experiment, e.g., at the end when general attention is low because participants are getting tired.
+It is therefore advisable to take this into account and subtract post-error RTs from associated pre-error RTs (so-called $\Delta$RT) instead so that global fluctuations over the course of the experiment are being taken into account [@Dutilh2012b].
+In our studies, we also control for trial type differences in RT by comparing trials of the same trial condition.
+For **Studies I** and **II**, we calculate PES in accordance with previous research on post-error slowing in a reinforcement learning task design [@Cavanagh2010a; @Frank2007a] by subtracting post-error RT for the next same pair from RT on the error trial.
+For **Study III**, we calculate PES by subtracting post-error RT from pre-error RT if they are of the same trial type (neutral/angry/happy).
+
+## Participants
+
+For **Studies I** and **II** we recruited a total of 48 healthy participants who gave written informed consent before participating in the study.
+In **Study III**, 6,047 participants took part in the study which was presented at an art exhibition at Nationalmuseum in Stockholm, Sweden.
+Detailed information about the aims of the research was given to participants both on the TV screen for the experiment and on text panels of the installation and consent was implied by participants voluntarily initiating the task.

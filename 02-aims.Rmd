@@ -1,0 +1,21 @@
+---
+output: pdf_document
+---
+
+# Aims
+
+The central aim of the studies presented in this thesis was to investigate which aspects of cognitive control processes in reaction to negative feedback benefit learning and how this is reflected in both brain anatomy and function.
+
+In **Study I** we used a probabilistic reinforcement learning paradigm to assess the influence of cognitive control adjustments such as post-error slowing and stay/switch-behaviour in addition to learning phase performance as predictors for learning outcome in a later test phase.
+In addition, we were interested in which neural areas predicted later response time adaptation at the time of receiving negative feedback.
+Further, we analyzed how trial-by-trial absolute and signed prediction errors obtained from our reinforcement learning models affected behaviour and how they were represented in the brain.
+Data for this study was acquired in the context of a larger ongoing project which investigates the influence of self-associations on learning using priming techniques.
+Therefore we controlled for this factor in all analyses of **Studies I** and **II** in which this was possible.
+
+Given converging evidence from previous research [e.g., @Aron2007a; @Aron2014b; @Rae2015] and the interesting results from **Study I** which implicated the right inferior frontal cortex as an important region in cognitive control processes, we investigated in **Study II** whether an anatomical property of this area, cortical thickness, was related to the extent and memory aspects of PES.
+We also used drift diffusion modelling to better understand the dominant cognitive process behind post-error slowing and related obtained parameters to anatomical structure of the rIFC.
+
+Using a visual search task, in **Study III** we explored the effect of an error on not only the first trial after the error, but also on subsequent trials.
+This was again supported by drift diffusion models to reveal the relevant decision process components behind reaction times and accuracy.
+Additionally, we examined how trial type properties (emotion and difficulty) influenced post-error adaptations and how later increases in accuracy were associated with decision processes on the trial after an error.
+

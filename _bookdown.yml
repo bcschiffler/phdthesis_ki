@@ -1,0 +1,6 @@
+book_filename: thesis.Rmd
+# before_chapter_script: [script1.R, script2.R]
+# after_chapter_script: script3.R
+output_dir: output
+delete_merged_file: true # Deletes the temporary output file
+# clean: ["my-book.bbl", "R-packages.bib"]

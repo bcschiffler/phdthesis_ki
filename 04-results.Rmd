@@ -1,0 +1,108 @@
+---
+output: pdf_document
+---
+
+# Results
+
+## Study I: Post-error slowing is associated with learning performance and functional activity in cognitive control and visual regions
+
+### Relation of learning phase measures to the testing phase
+
+In a multiple regression model, we found that both learning phase accuracy on the main symbol pair (AB) and PES during the learning phase were positively associated with testing phase performance (Correlation between PES during learning phase and test score in Figure \ref{fig_results_study1}A), while the number of times participants decided to stay with the same decision after negative feedback or switch to the other option was not directly related to test phase performance.
+
+\begin{figure}
+  \centering
+  \includegraphics{./figures/results_study1.pdf}
+  \caption{Main results of Study I. (A) Positive correlation between memory-based post-error slowing and test phase performance across participants. (B) fMRI activity of brain areas while receiving negative feedback, related to amount of slowing on the next same pair trial (red-yellow) and to absolute prediction error (green), as well as the conjunction between both (blue). Figures from Schiffler et al., 2016, reprinted with permission from MIT Press.\label{fig_results_study1}}
+\end{figure}
+
+We did not find a correlation of PES with overall accuracy of any of the symbol pairs during the learning phase.
+Testing phase scores also demonstrated that participants performed better in the test phase on new symbol combinations which were easier. For example, the choice between symbol A which was reinforced at an 80% probability during the learning phase and symbol D, which was reinforced at 30% should be easier than the choice between A and C (80%/70%), see Figure \ref{fig_testscores}.
+
+\begin{figure}
+  \centering
+  \includegraphics[height=0.70000\textwidth]{./figures/test_scores_by_pair_se.pdf}
+  \caption{Test scores divided by symbol pair combinations. During the test phase of the task, the symbols A and B from the learning phase are now tested separately against all other symbols learned. Green colour represents easier symbol combinations (AD: 80\%/30\% probability of positive reinforcement, AF: 80\%/40\%, BC: 20\%/70\%, BE: 20\%/60\%) and orange represents more difficult combinations (AC: 80\%/70\%, AE: 80\%/60\%, BD: 20\%/30\%, BF: 20\%/40\%). Error bars reflect standard error of the mean.\label{fig_testscores}}
+\end{figure}
+
+### Feedback-congruent staying/shifting
+
+As expected, participants on average repeated decisions more often when they were reinforced by positive feedback compared to negative feedback.
+A general working memory component as indicated by feedback congruent behaviour in the beginning of the task [@Frank2007a] was not significantly related to PES.
+
+### fMRI activity associated with PES
+
+On the event of receiving negative feedback, activity in right inferior frontal cortex and bilateral occipital cortex tracked the response speed adjustment on the following relevant trial (Figure \ref{fig_results_study1}B).
+
+### Reinforcement learning model measures
+
+#### Prediction errors and their neural correlates
+
+Prediction errors estimated from our reinforcement learning model were associated with post-error slowing.
+More unexpected negative feedback lead to an increase in slowing both on the direct next trial and on the next relevant (same pair) trial while more unexpected positive feedback was followed by a speed increase.
+Negative prediction errors correlated with brain activity in left striatum as assessed by an *a priori* ROI analysis and absolute (i.e., unsigned) prediction errors over all feedback evoked activity in similar brain regions as the main PES analysis.
+
+#### Learning rate
+
+We had estimated two separate learning rates for positive and negative feedback in accordance with previous research [@VandenBos2012; @Kahnt2009] to investigate whether participants who showed stronger reactivity to negative feedback (e.g., increased slowing or switching to the other symbol) showed a learning pattern which focuses on recent feedback in contrast to the whole history (i.e., a high learning rate).
+We found this pattern for switch behaviour, but not for post-error slowing.
+This means that the model estimated a higher negative learning rate for participants who switched their choice to the other symbol following negative feedback.
+
+#### Confidence
+
+Confidence measures as extracted by our RL model also showed a negative relation to PES (i.e., lower confidence lead to an increase in $\Delta$RT).
+
+#### Model validation
+
+We simulated model predictions by taking the final model parameters ($\alpha_{pos,neg}$ and $\beta$) and averaged over 10,000 repetitions of simulated behaviour for each participant.
+The model was able to reproduce the learning curves present in the acquired data as well as the differentiation in accuracy between the three different symbol pairs at the end of the training phase. 
+
+## Study II: Adaptive increases in response caution after errors are related to cortical thickness in cognitive control regions
+
+### Drift diffusion correlates of PES in a reinforcement learning design
+
+Post-error trials, compared to post-correct trials, were defined by an increase in decision threshold but there was no difference in the rate of evidence accumulation (Figure \ref{fig_results_study2}A,B).
+
+\begin{figure}
+\centering
+  \includegraphics{./figures/results_study2.pdf}
+  \caption{Main results of Study II. (A) Posterior probability density of decision threshold parameter regression estimate for post-error trials compared to post-correct trials. (B) Posterior probability density of evidence accumulation parameter regression estimate for post-error trials compared to post-correct trials. (C) Vertex based analysis showing clusters in which rIFG thickness is positively associated with $\Delta$RT. (D) Correlation between average $\Delta$RT and average rIFG cortical thickness when partialing out the effects of age, sex and prime. Shaded area indicates 95\% confidence interval of the regression line.\label{fig_results_study2}}
+\end{figure}
+
+This indicates that error trials evoke increased response caution in this task design but not necessarily decreases in evidence accumulation.
+Against our expectations, an interaction between the distance to the next same pair trial and the rate of evidence accumulation was not supported by the data.
+These findings suggest that memory-based PES is an adaptive cognitive control process because the RT increases in this experiment contributed to accuracy as shown by the increase in response caution.
+
+### PES is related to cortical thickness in rIFC
+
+We found that overall cortical thickness of rIFC correlated with PES, both if the same pair was the direct next trial after the error and if there was at least one other symbol pair in between.
+*Post-hoc* correlations and a follow-up vertex wise analysis both demonstrated that the strongest association of PES was to the anterior part of rIFC (Figure \ref{fig_results_study2}C,D), in pars orbitalis (particularly for longer distances) and pars triangularis (especially for immediate next trials).
+
+### Response caution increases after errors directly relate to cortical thickness in rIFC
+
+Using participants' parameters of decision threshold and evidence accumulation adaptation on post-error trials compared to post-correct trials, we showed that anatomical variability in rIFC, particularly in pars orbitalis, related to decision threshold adaptations on the trial after the error.
+
+## Study III: Response adaptations to errors are multi-component processes and change dynamically over several trials after the error
+
+### Dynamics of latent decision processes after errors
+
+In this study, we have found that reactions are marked by sustained increases in response caution over several trials and transient decreases in evidence accumulation, most prominent on the direct next trial after the error (Figure \ref{fig_results_study3}A).
+
+\begin{figure}
+  \centering
+  \includegraphics{./figures/results_study3.pdf}
+  \caption{Main results of Study III. (A) Decision process components contributing to post-error slowing over several trials after an error. While decision threshold $a$ showed a sustained increase even several trials after an error (orange) compared to post-correct trials (green), an initial post-error dip in evidence accumulation $v$ increased over the following trials. Non-decision time $T_{er}$ (not shown) displayed a sustained decrease for post-error trials relative to post-correct trials. (B) Relation of decision process parameters on the first trial after an error to accuracy on the following five trials. Higher decision thresholds $a$ and evidence accumulation $v$ as well as lower non-decision time $T_{er}$ immediately post-error were associated with no mistakes on the following five trials compared to at least one mistake. Figures from Schiffler et al., 2017, adapted under CC BY 4.0 license.\label{fig_results_study3}}
+\end{figure}
+
+Further, we also found that non-decision time was reduced for several trials post-error.
+This indicates that in our experiment, multiple decision processes were affected simultaneously by the error and give rise to the particular pattern of post-error slowing.
+
+### How do downstream accuracy increases rely on post-error adaptation?
+
+Post-error trials which were followed by five correct trials were marked by higher decision thresholds, higher rates of evidence accumulation and lower non-decision times (Figure \ref{fig_results_study3}B).
+
+### Effects of error properties on decision making
+
+We found differences in post-error decision processes both by emotional valence and difficulty of stimuli.
+These variations had specific effects on the rate of evidence accumulation.
+It was reduced both for generally more difficult trials and following angry error trials compared to happy error trials.

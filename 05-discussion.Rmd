@@ -1,0 +1,81 @@
+---
+output: pdf_document
+---
+
+# Discussion
+
+Can appropriate response adaptation to negative feedback support learning? Our studies presented in this thesis suggest that this is indeed generally the case, but that there are also potentially detrimental components which need to be recognized.
+
+## Behavioural results in Studies I - III
+
+In **Studies I** and **II** we have presented evidence that PES in a RL context can benefit learning outcome.
+**Study I** demonstrated that there are long-term learning outcome benefits if participants adapt their response speed to the negative feedback received.
+Interestingly, the effect that we found for PES on testing phase performance was similar in magnitude to the effect of overall learning phase performance in the main symbol pair AB on the test score.
+This is somewhat surprising as being able to clearly differentiate between the value of these two symbols as indicated by accuracy on pair AB during the learning phase should be a strong predictor for performance during the test phase in which symbols A and B are separately pitted against all other symbols.
+
+These findings extend the literature on beneficial and adverse effects of PES on learning by showing that error monitoring processes after negative feedback can be an indicator for later learning outcome as stipulated by Ridderinkhof and colleagues [-@Ridderinkhof2004]. 
+This suggests that negative feedback is encoded at the time of receiving the feedback to drive future response adaptations.
+This finding emphasizes encoding of feedback as a crucial phase for subsequent changes in behaviour, which may have implications for structuring learning exercises, e.g., in the classroom.
+
+In **Study II**, we showed that PES also has a positive effect during the initial learning phase of the task.
+The increase in RT was associated with an increase in the decision threshold, which signals that participants made more cautious (and thus on average more correct) decisions after errors. 
+This finding is not very surprising, given that post-error adaptations in general have previously been associated with increases in response caution [@Dutilh2012a] and that in a different reinforcement learning task, decision threshold has been linked to decision conflict [@Frank2015].
+The result reiterates that the additional time that is often being taken after errors is beneficial to learning performance.
+
+**Study III** provided evidence for both functional and potentially maladaptive decision components in the process of post-error slowing.
+While response caution persisted at elevated levels even several trials after the error, reductions in evidence accumulation were mainly present for the first post-error trial, suggesting only a transient disruption of decision making by the error.
+
+Reduced evidence accumulation and increased decision boundaries have also been found in a motion direction discrimination task [@Purcell2016], although that study did not find any differences in non-decision time.
+However, in our case, the non-decision time was reduced following errors, i.e., this part of the decision process did not contribute to post-error slowing.
+
+Our findings align with a recent conceptual proposal, which suggests both co-occurring increases in response threshold and decreases in sensitivity to sensory information which together lead to initial decreases in accuracy and eventual recovery over future trials [@Ullsperger2016].
+
+Interestingly, these results as predicted by the aforementioned theory stand in contrast to Laming's [-@Laming1979] original findings that RT recovers faster after an error than task accuracy, possibly due to differences in the task being used or in the way that post-error slowing was calculated.
+
+## Neuroimaging results in Studies I and II
+
+In **Studies I** and **II**, we show that PES was associated with both function and anatomy of the rIFG, an important cognitive control region in the brain.
+Specifically, anatomical variability in cortical thickness in this area reflected participants' decision threshold adaptations after errors, suggesting a possibility that there are markers of propensity to error adaptation in the human brain which can be investigated in further research. Functional activity in rIFG when receiving the error feedback was positively associated with response time slowing on the next relevant trial.
+
+In similar previous analyses, activity in dorsolateral PFC [@Kerns2004] and pMFC [@Danielmeier2011] on the error trial predicted RT slowing on the post-error trial.
+Hester and colleagues also demonstrated that error activity in pMFC predicted accuracy on the next same target stimulus, even if that trial was several trials ahead in the future [@Hester2009].
+Further, activity in bilateral IFG has previously been associated with successful instrumental learning [@Guitart-Masip2012a].
+
+It is unlikely that there exists only one single region in PFC which determines response adaptations like PES, but that instead several areas cooperate to implement the response speed adjustments in cooperation with primary motor areas, the pre-SMA and subcortical regions like the STN [@Siegert2014].
+Further, these areas likely interact with regions which have been consistently shown to be involved in error monitoring like pMFC and ACC.
+Our contribution in the studies presented here is that lateral PFC, and more specifically rIFG, is directly involved in signalling the need for a future more cautious response after receiving the feedback, not only for suppressing the motor output on the post-error trial.
+Future studies which focus on functional or anatomical network approaches [as e.g., in @Rae2015] will be able to provide a more comprehensive answer to these questions.
+
+## Limitations and future directions
+
+Particularly for our drift diffusion modelling we have employed a method which enables accurate parameter estimation even when trial amounts are low.
+However, for the particular conditions we wanted to investigate, we still encountered problems in convergence and had to make compromises on the model structure (i.e., model the data on group level in **Study III** and reduce model complexity in **Study II**) to assure convergence of the models.
+Even though we had a lot of participants in **Study III** and the direction of almost all parameter estimates when including individual level modelling was the same as for the group models, the trial amount per participant should still be increased to also get stable individual parameter estimates.
+
+Further, it is important to consider that the PES effects we have observed here differ between the presented studies due to the intricacies of the two experimental designs.
+Particularly, this concerns the memory-based aspect of PES in **Study I** and **II** compared to a more conventional visual search task in **Study III**.
+While adaptation of response speed in line with previous relevant feedback is reasonable and has previously been found in other studies employing the same type of probabilistic reinforcement learning task [@Cavanagh2010a; @Frank2007a], this might constitute a different aspect of PES than what has historically been classified as PES.
+For example, one recurring finding in PES research [see e.g., @Jentzsch2009; @Danielmeier2011b] is that the slowing is greater when the response to stimulus interval is smaller (i.e., the closer the time from feedback to onset of next stimulus).
+In our first two studies, a considerable amount of time could pass between a particular feedback and the next relevant trial (on average 20 seconds between feedback and next same pair in comparison to traditional studies of PES in which the response to stimulus interval is usually below one second).
+As such, the received negative feedback needs to be stored in some way until the participant recognizes the same pair for the next time.
+What we investigate in the first two studies could thus involve a more cognitive aspect of post-error slowing than has been conventionally examined.
+
+In **Study I** and **II**, the PES effect was also comparatively smaller to PES in **Study III**. This might be because there were few error trials in the latter study which bias the analysis of post-error reactions towards initial encounters of errors.
+Conceivably, these initial errors might provoke a stronger post-error reaction, but this hypothesis would need to be tested in future studies.
+
+Another interesting aspect for future research concerns the question how errors in deterministic decision-making tasks differ from probabilistic negative feedback often given in reinforcement learning task designs with regard to involvement of brain areas associated with cognitive control.
+One possibility is that while the former feedback evokes a similar response independent of the current stage of the task, the latter might lead to decreasing engagement of relevant cognitive control structures when the value of a particular stimulus is already certain (e.g., in later phases of a task).
+
+Finally, I believe that both the fields of cognitive control and reinforcement learning will benefit immensely from research on dynamic functional connectivity [@Hutchison2013; @Thompson2017].
+The promise of focusing on the dynamics of brain activity lies in the potential to elucidate the brain networks contributing to processes such as post-error slowing on a moment-to-moment basis and how these networks interact with other brain areas to promote learning.
+
+For the studies presented here, this would mean that the findings about rIFG and potential feature processing regions in occipital cortex could be embedded in a larger context of how they work together with other nodes like medial PFC, STN and pre-SMA in a network which regulates decision threshold adaptations [@Cavanagh2011b; @Cavanagh2014a; @Frank2015; @Herz2016a; @Rae2015] and with areas in the brain encoding the value or deviance from expected value of relevant stimuli such as striatal areas like the nucleus accumbens [@Niv2012].
+
+A concrete example of how the interaction of those networks could be probed is by combining experimental paradigms which have usually been used to evoke specific brain activity in relation to cognitive control and reinforcement learning. 
+For example, it could be possible to first "load" certain stimuli (e.g., faces and houses) with high and low value by reinforcing them and then in a second phase use these stimuli in e.g., a Go/No-Go task to determine how the previous reinforcement affects cognitive control performance [see e.g., @Freeman2014 for an example of combining a conditioning task with a Go/No-Go task].
+With proper orthogonalization of stimuli (e.g., using dimensions of face characteristics and type of house in the Go/No-Go task), specific hypotheses about the involved brain networks could then be tested.
+Of particular interest could be an interaction of cognitive control network areas with both reward related networks and stimulus-specific association parts of the brain [@Danielmeier2011; @Schiffer2014].
+This would provide a more comprehensive picture of the role of value in cognitive control.
+It could potentially even be used to inform research on clinical disorders such as addiction by asking why prepotent action tendencies associated with reward can sometimes not easily be controlled, verifying earlier findings of involvement of rIFC in inhibiting craving [@Tabibnia2011; @Volkow2010].
+
+Returning to Foster's original vision to decompose reaction times into decision components, we now have the computational tools available to do so on increasingly larger amounts of data. For example in clinical populations, making use of that computational power to investigate differences in decision processes promises substantial information gain compared to earlier, more coarse approaches and can aid in bringing forth the emerging field of computational psychiatry [@Huys2016; @Maia2011; @Montague2012b].

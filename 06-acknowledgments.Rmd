@@ -1,0 +1,31 @@
+---
+output: pdf_document
+---
+
+# Acknowledgments {-}
+
+First of all, I would like to say an enormous thank you to my supervisor **Sara Bengtsson** for taking me on as your PhD student. You have always had an open ear and door for me throughout this whole PhD and I am very grateful for that!
+
+Thank you also to my two co-supervisors, **Martin Ingvar** and **Peter Fransson**. **Martin**, I sincerely respect your scientific rigour and enthusiasm. **Peter**, I was very thankful for being able to pick your brain on various methodological questions related to neuroimaging.
+
+To **Granville**, **Lieke**, **Nina**, **Pontus**, and **William**, my closest support group during the PhD: Our collaborations, journal clubs and activities outside of work made my sceptical mind curious about science again when it was needed the most. Thank you so much for everything!
+
+To **Pär** and **Alva**, you have given me a better welcome in Stockholm than I could have wished for and were a constant source of encouragement, particularly in the difficult phases at the beginning of the PhD.
+
+**Anaïs**, thank you for being a great roommate for almost the entire PhD time and **Fanny**, thank you for the tennis matches and the culinary support of our corridor!
+
+To **Mimmi**, with your positive spirit you always managed to turn big administrative hassles into minor inconveniences.
+
+A special thanks to **Rita** for great statistical aid (often with short deadlines) and to **Karin** for long discussions about the newest artful TV series and the support towards the end of the PhD.
+
+To all the other people in the old and new corridor who have made life at KI so much more enjoyable: **Frida**, **Sofia**, **Christoph**, **Eleni**, **Jonathan**, **Aisha**, **Jeanette**, **Sandra**, **Gustav**, **Nathalie**, **Isabel**, **Eva**, **Predrag**, **Angelica**, **Mikkel**, **Lau**, **Cassia**, **Daniel**, **Annelie**, **Orestis**, **Miriam**, **Diana**, **Emilia**, and **Patrik**.
+
+Thank you also to the other members in the various journal clubs from whom I have learnt a lot, particularly **Philip** and **Ida**.
+
+To my Stockholm friends **Benji**, **Gustaf** & **Elsa**, **Anirudh**, and my family away from home: **Margareta** & **Per-Olov**.
+
+Thank you to my friends back in Germany who have been with me for a long time: **Markus S.**, **Markus H.**, **Thorsten**, and **Andi**.
+
+\begin{CJK}{UTF8}{gbsn}My dear \textbf{Lu}, you have changed my life for a much better course. I am so happy to have you by my side and look forward to our future adventures! 谢谢你!\end{CJK}
+
+Zum Schluss vielen lieben Dank an meine Eltern **Helga** und **Helmut** und meinen Bruder **Max** für eure Unterstützung über die Jahre!

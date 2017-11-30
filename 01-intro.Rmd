@@ -1,0 +1,220 @@
+---
+output: pdf_document
+---
+
+# Introduction
+
+\begin{chapquote}{William James, \textit{Principles of Psychology}}
+One of the lines of experimental investigation most diligently followed of late years is that of the ascertainment of the time occupied by nervous events. [...] The question is, What happens inside of us, either in brain or in mind? and to answer that we must analyze just what processes the reaction involves.
+\end{chapquote}
+
+## Conceptual overview
+
+Both on the behavioural and neural level tremendous progress has been made over the past decades in the understanding of how stimulus values lead to action and how actions can be constrained by exerting cognitive control over them.
+However, these two processes of reinforcement learning and cognitive control have predominantly been investigated in isolation, particularly in neuroscience.
+Therefore, the question of how appropriate behavioural adjustment according to feedback improves value learning has only recently come into the spotlight. 
+This question will stand in the center of this thesis.
+
+I will start by providing separate overviews of the fields of cognitive control and reinforcement learning and afterwards I am going to highlight interactions between the two fields, particularly in the realm of mental disorders.
+
+## Cognitive control
+
+Cognitive control refers to a heterogeneous concept, subsuming a variety of mental functions which include, but are not limited to, working memory, task-set switching, response selection and response inhibition [@Lenartowicz2010; @Ridderinkhof2004; @Sabb2008; @Ullsperger2014].
+As a whole it can be defined as “the ability to regulate, coordinate, and sequence thoughts and actions in accordance with internally maintained behavioral goals” [@Braver2012].
+In this thesis I will mainly focus on behavioural and neural aspects of response inhibition in order to implement adaptive behaviour.
+
+### Post-error slowing (PES)
+
+An example of response inhibition is the phenomenon of post-error slowing (PES).
+After making a mistake or receiving negative feedback in a task, the next response on similar trials will often require a longer reaction time than pre-error responses [@Danielmeier2011b; @Kerns2004].
+
+Various accounts have been proposed to explain the psychological correlates to this slowing.
+On the one hand, non-functional accounts of PES contend that the slowing happens because of the low frequency of errors in many tasks which evokes a general orienting response [@Notebaert2009] or that post-error monitoring acts as a bottleneck, limiting resources of decision processes after the error [@Jentzsch2009].
+A common motive among the functional accounts of PES on the other hand is to argue for an increase in response caution [@Botvinick2001; @Dutilh2012a] on the trial following the error which leads to a speed-accuracy trade-off [@Bogacz2010; @Fitts1966; @Heitz2014; @Laming1979; @Steinhauser2017].
+
+PES is often quantified in response time tasks such as Go/No-Go tasks, where the response time after an error is subtracted from the response time on the trial before the error [@Dutilh2012b].
+Similarly, it can be calculated in relation to a comparable previous trial, even if that trial is set apart in time by several seconds [@Cavanagh2010a; @Frank2007a].
+While the former might reflect a motoric or more general attentional adjustment, the latter also takes into account the adaptation of response speed in accordance to conflict between two stimuli with similar values.
+
+For example, in a probabilistic reinforcement learning task such as we have employed in **Study I** and **II**, negative feedback should trigger response speed decreases the next time a particular symbol pair is seen, which would show an adaptive regulation of response time in accordance with feedback (Figure \ref{fig_pes}A).
+This response time slowing could be useful to gather more evidence when stimulus values are more similar to each other and therefore harder to distinguish, i.e., during conflict [@Cavanagh2011b; @Frank2015; @Zaghloul2012].
+On the other hand, errors on a visual search task such as the one we used in **Study III** might be expected to have the largest effect on trials directly after the error since the task is structured deterministically and errors provide information about necessary adaptation on the immediate next trial (e.g., "I missed this angry face, therefore I need to check for this particular face shape more carefully", see Figure \ref{fig_pes}B).
+
+![The two different kinds of post-error slowing investigated in this thesis. (A) PES during a probabilistic reinforcement learning task as employed in our **Studies I** and **II**. Here, PES ($\Delta$RT) is calculated by subtracting the RT on the error trial from the RT when the same pair trial next appears again. (B) PES during a visual search task as used in our **Study III**. In this study, $\Delta$RT is calculated by subtracting the RT on the trial after the error from the RT on the trial before the error if both trial conditions are the same (in this case all neutral faces).\label{fig_pes}](./figures/pes_memory_direct.png)
+
+### The cognitive control network in the brain
+
+Cognitive control processes are implicated to rely on lateral prefrontal brain areas [see e.g., the review by @Miller2000] and anterior cingulate cortex as indicated in a lesion mapping review with a variety of neuropsychological tasks related to response inhibition, conflict monitoring and switching [@Glascher2012].
+A particular network that implements response inhibition or stopping depending on the task at hand has been proposed by Aron and colleagues [Figure \ref{fig_rifg_dcm}A, @Aron2007a; @Aron2014b].
+Within this network, right inferior frontal gyrus (rIFG) plays a key role in response inhibition via its connections to basal ganglia (subthalamic nucleus, STN) and presupplementary motor area (pre-SMA). Anatomical connections between the areas in this cognitive control network show good test-retest reliability as assessed in a recent diffusion weighted imaging study [@Boekel2017].
+
+PES has been linked to posterior medial frontal cortex (pMFC) activity, increased activity in task-relevant areas and decreased activity in task-irrelevant cortical areas [@Danielmeier2011; @King2010]. 
+The interesting dynamic here is that higher activity in pMFC after feedback was correlated with an increase in PES on the post-error trial [@Danielmeier2011] while decreases in motor network activity on the post-error trial were related to a decrease in PES [@King2010].
+
+A recent study combining effective and anatomical connectivity methods (Dynamic Causal Modelling and diffusion based probabilistic tractography) showed that the rIFG positively modulates the excitatory influence of the pre-SMA on the STN, leading to stronger motor inhibition in motor cortex [Figure \ref{fig_rifg_dcm}B, @Rae2015]. Importantly, mean diffusivity in white matter tracts connecting rIFG and preSMA to STN correlated with better performance in inhibiting responses in a stop-signal task.
+
+![Major nodes of a prefrontal cognitive control network. (A) White matter tracts connecting the right IFC, preSMA and STN are visualized using Diffusion Weighted Imaging. Figure from @Aron2007a, reprinted with permission from Society for Neuroscience. (B) Dynamic Causal Modelling of the cognitive control network. The winning model configuration suggests a modulating influence of IFG on the activity between preSMA and STN. Figure from @Rae2015, reprinted under CC BY 4.0 license.\label{fig_rifg_dcm}](./figures/dcm.png)
+
+Extent of lesion damage to rIFG has previously been found to correlate with a classical measure of response inhibition, the stop signal reaction time (SSRT) in a stop signal task [@Aron2003] <!-- This is a very underpowered study though --> and temporary deactivation of the rIFG using transcranial magnetic stimulation lead to the inability of stopping an action [@Chambers2006].
+
+Further, studies have shown that white matter integrity connecting the rIFG and other areas relevant for cognitive control showed an association to response inhibition performance [@Fjell2012b; @Madsen2010].
+
+Based on these results of a crucial role of rIFG in response inhibition, in **Study II** we therefore evaluated the hypothesis whether cortical thickness in rIFG could be related to decision components involved in post-error slowing.
+
+## Reinforcement learning
+
+One of the largest influences on modern approaches to reinforcement learning are behavioural studies in animals, carried out at the beginning of the last century.
+In the framework of classical conditioning, Pavlov used the term “reinforcement” as the repeated pairing between an unconditioned (e.g., food) and a neutral stimulus (e.g., a bell) until the neutral stimulus by itself led to the response (e.g., dogs’ salivation) previously only associated with the unconditioned stimulus [@Pavlov1927].
+Thus, reinforcement here refers to an association between two stimuli. 
+
+Thorndike on the other hand specified an action-stimulus association in his Law of Effect, derived from seminal experiments with cats [@Thorndike1911].
+This law pertains to the observation that behaviour that is followed by positive consequences is likely going to be repeated in the future, e.g., a cat pressing a lever to escape a box and obtain the fish outside the box, a process later on referred to as instrumental or operant conditioning [@Skinner1935].
+Modern computational approaches to reinforcement learning implement both Pavlovian and instrumental conditioning to model behaviour by utilizing algorithms from the field of machine learning [@Sutton1998].
+
+A highly influential model depicting Pavlovian conditioning in animals was developed by @Rescorla1972.
+This model was particularly popular as it could explain key behavioural findings in reinforcement learning such as blocking [@Niv2009].
+Blocking refers to the finding that a second conditioned stimulus does not evoke a conditioned response if it does not provide additional information beyond that of the first conditioned stimulus [@Kamin1969].
+
+Sutton and Barto [@Sutton1988; @Sutton1990] extended these ideas with the concept of temporal difference learning, incorporating future rewards, discounted by how far they were set apart in time.
+This can be a useful property when trying to explain processes like second-order conditioning and conditioned reinforcement [@Niv2008].
+In second-order conditioning, a stimulus that had previously been conditioned can then be associated with another stimulus to construct a chain of associations.
+For example, an animal which has learned to associate the ringing of a bell with food can be taught to associate a light with the bell alone and through those contingencies learn a higher-order association between light and food.
+Temporal difference learning has been successfully applied to describe this type of second-order conditioning in humans [@Seymour2004].
+
+Here, the notion of a prediction error was also introduced, indicating the calculation of a predicted reward minus the actual obtained reward.
+I will refer back to the prediction error, particularly in terms of reward learning, in the section on neural correlates of reinforcement learning.
+
+Actions that lead to rewards are subsequently repeated.
+This is taken into account in Q-learning models [@Watkins1989; @Watkins1992].
+Here, state-action pairs, instead of state-value pairs, are modelled as Q-values with the “best” actions referring to the ones with the highest Q-values [@Niv2009]. 
+The estimated values can then also be used to calculate a prediction error.
+The SARSA (state-action-reward-state-action) algorithm on the other hand is considered an on-policy algorithm, meaning that the calculation of the prediction error only involves the next chosen action, i.e., following the agent’s policy [@Niv2009].
+In recent years, both using Q-learning [e.g., @FitzGerald2012; @Frank2007a] and SARSA [e.g., @Daw2011; @Glascher2010] algorithms to model human behaviour have proved to be useful and reinforcement learning approaches have also improved performance of artificial intelligence algorithms such as deep learning to match or improve upon human performance [@Mnih2015; @Silver2017].
+
+Furthermore, a division between model-free and model-based reinforcement learning has also been proposed.
+While the former refers to the simple storing of action-value correspondences without assuming a causal structure of the environment, the latter emphasizes that decisions which lead to rewards are made through planning and simulating the potential actions in a goal-directed manner [@Botvinick2014].
+Whether these two different systems are also dissociable in terms of their neural correlates is still being discussed, see e.g., @Daw2011 for evidence in favour of an integrated system, @Glascher2010 and @Smittenaar2013 for accounts of separable neural regions, @Lee2014 for an arbitration mechanism between the two systems, as well as @Wunderlich2012c for the influence of dopamine in that context.
+
+### Neural correlates of reinforcement learning
+
+In their application to neuroscience, a crucial assumption underlies many of these reinforcement learning models, namely the idea that the brain continually makes predictions about its environment in order to maximize reward [@Cohen2007; @Niv2009; see also @Friston2009].
+
+One of the most intriguing findings bringing together computational approaches and neural processes was the discovery that neurons expressing the neurotransmitter dopamine in nonhuman primates not only reacted to rewarding stimuli but also shifted their response towards a cue that could reliably predict an upcoming reward while not firing when the actual reward was presented.
+Furthermore, a decrease in firing rate was observed when the original reward was omitted at the expected point in time.
+In other words, the phasic firing of these neurons seemed to achieve a reward prediction error [@Montague1996; @Schultz1997, see Figure \ref{fig_schultz}].
+
+![Dopamine neurons implement a reward prediction error. When no conditioned stimulus (CS) is presented, dopamine neurons fire in response to a reward R (top panel). When a CS such as a light is predictive of the reward, the dopamine response shifts to firing after the CS instead (middle panel). If no reward is presented even though it was predicted because of the light, there is a dip in the dopaminergic neuron response at the time when the reward should have appeared. Figure from @Schultz1997, reprinted with permission from AAAS.\label{fig_schultz}](./figures/schultz.jpg){ width=60% }
+
+While not uncontroversial [@Redgrave1999; @Redgrave2008], this finding of a direct neural implementation of a prediction error and the close association between dopamine and reinforcement learning has inspired a lot of research in human neuroimaging, commonly attributing neural correlates of reward prediction errors to the striatum [see e.g., @Chase2015; @Garrison2013 for recent reviews]. 
+
+Several studies have shown that dopamine levels in the brain promote associative learning in specific ways.
+Frank and colleagues, using a probabilistic learning task, discovered that dopamine medication in Parkinson’s patients would make them better at learning from positive than negative outcomes, while patients off medication showed the opposite contrast [@Frank2004].
+Further, polymorphisms in genes related to dopamine function also showed a direct relation to positive and negative learning styles.
+For example, participants with variations in dopamine D2 receptor densities displayed differences in their proneness to learn from or generalize to negative outcomes [@Frank2007a; @Klein2007]. 
+
+Computational modelling has been effectively used in combination with neuroimaging methods like fMRI to elucidate e.g., developmental changes in reinforcement learning [@VandenBos2012], risk sensitivity [@Niv2012] and deviations in reward learning in mental disorders like depression [@Kumar2008] and bulimia nervosa [@Frank2011].
+Neuroimaging studies provided additional evidence that striatum and midbrain are involved in the computation of reward prediction errors and implicate the ventromedial prefrontal cortex in the estimation of values [@Chase2015; @Jocham2011].
+
+## The intersection of cognitive control and reinforcement learning
+
+How cognitive control processes can benefit value learning, override action tendencies or sway neural processes to promote a more model-based or model-free computation has only recently sparked investigations.
+For example, in a recent study, cognitive control related measures in two tasks were associated with a higher amount of model-based reward learning in a two-stage reinforcement learning task [@Otto2015].
+
+Yet, whether cognitive control can also have an impact on model-free reinforcement learning is less well known.
+We have addressed this issue in **Study I**, demonstrating that post-error slowing can have an impact on the generalization of learning in a model-free reinforcement learning paradigm [@Schiffler2016].
+Another study provided support that connectivity between anterior cingulate cortex and ventromedial prefrontal cortex was associated with adaptive switches in choice behaviour, integrating both immediate and delayed consequences [@Economides2014].
+This finding suggests a possible cognitive control process, foregoing the immediate reward for a potentially larger delayed outcome.
+
+Furthermore, the interaction between cognitive control and reward learning plays an important role in mental disorders and can thus be a potential future target for specific intervention.
+Particularly in addiction, self-control over prepotent response habits is required to sustain abstinence.
+Volkow and colleagues showed that instructed cognitive control of drug craving activated right inferior frontal gyrus as a node in a cognitive control network while inhibiting reward related regions, including nucleus accumbens and orbitofrontal cortex [@Volkow2010].
+As compulsive disorders show a habit towards model-free at the expense of model-based learning [@Voon2015], further work on the relation of cognitive control and reward learning styles could be beneficial to illuminate the ways in which cognitive control can benefit abstinence and ultimately recovery from these disorders. 
+
+## Challenges
+
+### Is response adaptation like PES beneficial to learning?
+
+Whether PES provides specific benefits in acquisition or transfer in learning paradigms is of yet unclear [@Ullsperger2014; @Ullsperger2016].
+For example, it is still to be determined under which conditions PES is associated with post-error accuracy [@Danielmeier2011b; @Hajcak2003; @Hester2007].
+
+We address these questions in our **Studies I** and **III** [@Schiffler2016; @Schiffler2017], investigating learning benefits of PES and how post-error decision components relate to stabilisation of accuracy.
+
+### How long do PES effects persist after an error?
+
+A related question concerns for how long an error affects decision making.
+In **Study I**, we investigated whether there was a memory component to PES in a reinforcement learning task, i.e., whether participants would adapt their response speed in relation to the negative feedback on certain symbol pairs.
+In **Study II**, we teased apart the effects of negative feedback on immediate next trials and delayed adaptation on later trials with regards to anatomical correlates.
+Finally, in **Study III** we investigated the persistence of post-error adaptations several trials after the error in a visual search task.
+
+### What are the time courses and contributions to accuracy of decision processes involved in PES?
+
+Previous studies have found to varying degree that both increases in decision threshold and reduced sensitivity to sensory information underlie PES.
+In **Study III**, we explored how these altered decision components change over time and how they contribute to the stabilisation of accuracy.
+
+## Computational modelling to tackle these challenges
+
+Advances in computer science, neuroscience and artificial intelligence prompted a cognitive revolution in the 1950s which enabled psychology to look beyond the black box of mental phenomena previously favoured by the predominant field of behaviourism.
+One way to validate theories about mental processes is to utilize computational models which can be fit to behavioural and/or neural data acquired in experiments.
+
+In this section I will present a general overview over the two main models used in our studies. 
+These are reinforcement learning models, which try to explain how participants learn by estimating the stored value of task items and predicting decisions based on these values and drift diffusion models, which are fit to reaction times and accuracy in a given task to illuminate the underlying decision process.
+
+### Reinforcement learning modelling
+
+The central theme in reinforcement learning modelling questions how the value of rewards in the environment impacts decision making. 
+The Rescorla-Wagner model of animal learning formalized how the value of a conditioned stimulus (CS) changes in a classical conditioning paradigm dependent on the worth of the actual unconditioned stimulus (US) [@Rescorla1972; formula modified from @Niv2009]:
+
+$$V_{new}(CS_i) = V_{old}(CS_i) + \alpha\left[\lambda_{US} - \sum_iV_{old}(CS_i)\right]$$
+
+Here, learning of the association between US and CS happens because the new value $V_{new}(CS_1)$ of any of the conditioned stimuli (e.g., a light as $CS_1$) gets updated by adding the difference between what actually happened (e.g., a food pellet as $\lambda_{US}$) and what was predicted - $\sum_iV_{old}(CS_i)$ - to its old value $V_{old}(CS_1)$.
+
+The importance of the difference between expected and predicted value was a remarkable insight at the time and is one of the key components of reinforcement learning models and other computational models of brain function even today.
+It indicates the surprise of a particular outcome and is additionally modulated by a learning rate $\alpha$ which reflects the importance of recency of rewards and can for example vary depending on the salience of the stimuli involved [@Niv2009].
+
+This measure of surprise also found its way into reinforcement learning models which are in active use in research today.
+In cognitive neuroscience, the measure of the prediction error has received particular attention because of its close relation with dopamine neuron firing [@Schultz1997] as well as its correspondence to dissociable model-free (i.e., reward-related) and model-based (i.e., state-related) correlates in the brain [@Glascher2010].
+Analogous to the final term in the Rescorla-Wagner model, the prediction error can be calculated as follows by subtracting the expected value of a stimulus $V$ at timestep $t$ from the current value $r$ at timestep $t$:
+
+$$\delta_t = r_t - V_t$$
+
+The full equation with which value updates can be estimated then looks like this:
+
+$$V_{t+1} = V_t + \alpha * \delta_t$$
+
+How do these stimulus values lead to a decision towards one or another option?
+The computed values can be converted to action probabilities by the softmax equation, in which for example the probability of choosing between stimulus A and B at time *t* can be described as follows:
+
+$$P(A)_t = \frac{1}{1 + e^{-\beta(V(A)_t - V(B)_t)}}$$
+
+In this formula, the difference between the values of stimuli A ($V(A)_t$) and B ($V(B)_t$) is computed and adjusted by the inverse temperature parameter $\beta$, which controls individuals' propensity to explore new options versus exploit the known value differences (albeit small as they might be). 
+In other words, an increase in the value for $\beta$ suggests that a participant follows the computed value difference more deterministically.
+
+RL models have already been effectively applied to highlight previously unexplained aspects of disorders [for a review see @Maia2011] such as Parkinson's disease [@Frank2004], Schizophrenia [@Roiser2009] and in explaining model-based versus model-free behaviour [@Doll2012] which might be of future use to explain pathologies.
+
+### Drift diffusion modelling
+
+The fundamental question how mental computations can be inferred from measured reaction times dates back almost 150 years.
+Already in 1870 and based on earlier computations on nerve conduction velocity by von Helmholtz [-@Helmholtz1850], Foster described the principle on which today's drift diffusion models (DDM) base their computations, namely the division of overt reaction time into the unobservable components of sensory acquisition, mental computation, and motor output:
+"A typical bodily action, involving mental effort, may be regarded as made up of three terms ; of sensations travelling towards the brain, of processes thereby set up within the brain, and of resultant motor impulses travelling from the brain towards the muscles which are about to be used" [@Foster1870].
+
+Modern sequential sampling models, of which DDMs are one subclass, rely on the idea that during speeded decision-making tasks, evidence towards one of the options is acquired in a noisy manner until it reaches a decision boundary, after which a motor action is being executed [@Forstmann2016]. DDMs have usually been applied to two-alternative forced choice tasks (2AFC), although extensions to include tasks with multiple alternatives have also been discussed [@Forstmann2016; @Ratcliff2016a].
+
+\begin{figure}
+  \includegraphics{./figures/ddm.pdf}
+  \caption{Main parameters of the canonical drift diffusion model for decisions in two-alternative forced-choice tasks. Two example diffusion processes as random walks are depicted alongside the three main parameters of the drift diffusion model. Evidence for one or the other option is accumulated with a drift-rate $v$ until one of the two decision boundaries which are separated by the decision threshold $a$ is crossed. The total non-decision time $T_{er}$ can be divided in an afferent part (sensory perception) and an efferent part (movement initiation and execution).\label{fig_ddm}}
+\end{figure}
+
+Prominent parameters in these models include the decision threshold *a*, the rate of evidence accumulation *v*, and the non-decision time *T~er~*, which consists of time needed for both sensory acquisition as well as motor execution (see Figure \ref{fig_ddm} for a graphical overview of the DDM and its core parameters). While *a* reflects how much evidence is necessary to make a decision towards one of the options presented, *v* indicates the slope at which this evidence is acquired. 
+
+These three parameters relate to RT and accuracy in a particular fashion (Table \ref{tbl1}). The decision threshold *a* corresponds to increases in response caution with an increase in both RT and accuracy. The evidence accumulation *v* is related to decreases in RT and simultaneous increases in accuracy and is sensitive to for example task difficulty (higher difficulty leads to decreased *v*). Finally, the non-decision time *T~er~* corresponds to an increase in RT with no concurrent change in accuracy and is hypothesized to be for example affected by aging [@Ratcliff2010], although @Ratcliff2010 also find increasing decision thresholds with advancing age.
+
+
+| DDM Parameter | RT | Accuracy | Proposed correlates |
+|--------|:---:|:---:|:------:|
+|  Decision threshold *a* | &uarr; | &uarr; | Response caution  |
+|  Drift rate *v* | &darr; | &uarr; | Task difficulty |
+|  Non-decision time *T~er~* | &uarr; | = |  Aging  |
+
+Table: Core parameters of drift diffusion models and their relation to RT, accuracy, and proposed correlates.\label{tbl1}
+
+Using reaction time distributions and response accuracy in combination allows for example to explain differences in experimental conditions [see @Ratcliff2016a; @Forstmann2016 for reviews] or between patient groups, such as in schizophrenia [@Moustafa2015], Parkinson's disease [@Zhang2016] or in patients with psychosis [@Mathias2017] to particular mental processes within the total reaction time.
