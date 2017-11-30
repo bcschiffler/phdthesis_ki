@@ -1,6 +1,6 @@
 # An unofficial bookdown template for a doctoral thesis at Karolinska Institutet
 
-The files in this repository provide an unofficial blueprint for a doctoral thesis at [Karolinska Institutet](ki.se), compiled using the [bookdown](https://bookdown.org/yihui/bookdown/) package to combine multiple RMarkdown documents into one. The primary use is export to PDF via Latex using pandoc. There are a lot of ad hoc Latex insertions which might complicate export to other formats.
+The files in this repository provide an unofficial blueprint for a doctoral thesis at [Karolinska Institutet](http://ki.se), compiled using the [bookdown](https://bookdown.org/yihui/bookdown/) package to combine multiple RMarkdown documents into one. The primary use is export to PDF via Latex using pandoc. There are a lot of ad hoc Latex insertions which might complicate export to other formats.
 
 ## Workflow
 
